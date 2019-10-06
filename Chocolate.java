@@ -1,9 +1,5 @@
 public abstract class Chocolate{
-  protected Wonka3000 wonka;
-  protected Boolean hasAlmond;
-  protected Boolean hasMilk;
-
-
+  protected DulcesRosa dulcesRosa;
 
 	/**
 	* Default empty Chocolate constructor
@@ -15,46 +11,15 @@ public abstract class Chocolate{
 	/**
 	* Default Chocolate constructor
 	*/
-	public Chocolate(Wonka3000 wonka, Boolean hasAlmond, Boolean hasMilk) {
-		this.hasAlmond = hasAlmond;
-		this.hasMilk = hasMilk;
-    this.wonka = wonka;
-	}
-
-
-	/**
-	* Returns value of hasAlmond
-	* @return if the chocolate has almonds
-	*/
-	public Boolean getHasAlmond() {
-		return hasAlmond;
-	}
-
-	/**
-	* Sets new value of hasAlmond
-	* @param hasAlmond if it has almond
-	*/
-	public void setHasAlmond(Boolean hasAlmond) {
-		this.hasAlmond = hasAlmond;
-	}
-
-	/**
-	* Returns value of hasMilk
-	* @return if the chocolate has milk
-	*/
-	public Boolean getHasMilk() {
-		return hasMilk;
-	}
-
-	/**
-	* Sets new value of hasMilk
-	* @param hasMilk if it has milk
-	*/
-	public void setHasMilk(Boolean hasMilk) {
-		this.hasMilk = hasMilk;
+	public Chocolate(DulcesRosa dulcesRosa) {
+    this.dulcesRosa = dulcesRosa;
 	}
 
   public abstract String getNameChocolate();
+
+  public DulcesRosa getDulcesRosa(){
+    return dulcesRosa;
+  }
 
   /**
   * Prepara el Chocolate
@@ -106,6 +71,8 @@ public abstract class Chocolate{
   public void putBakingMold(){
     System.out.println("Poniendo la mezcla en el molde seleccionado");
   }
+
+  public abstract Boolean validate(int n);
 
 
 

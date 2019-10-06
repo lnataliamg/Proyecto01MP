@@ -1,72 +1,20 @@
 import java.util.Scanner;
-public class Wonka3000{
-  float cocoaButter;
-  float cocoa;
-  float sugar;
-  float milk;
-  float almond;
+public class Wonka3000 extends Machine{
   Scanner sc = new Scanner(System.in);
-      Chocolate chocolate = null;
-
-  public Wonka3000(){
-
+  Chocolate chocolate = null;
+  Gummy gummy = null;
+  Boolean validate = true;
+  public Wonka3000(DulcesRosa dulcesRosa){
+    super( dulcesRosa);
   }
-  public Wonka3000(float cocoaButter, float cocoa, float sugar, float milk, float almond ){
-    this.cocoaButter = cocoaButter;
-    this.cocoa = cocoa;
-    this.sugar = sugar;
-    this.milk = milk;
-    this.almond= almond;
-  }
-
-  public void setCocoaButter(float cocoaButter){
-    this.cocoaButter = cocoaButter;
-  }
-
-  public void setCocoa(float cocoa){
-    this.cocoa = cocoa;
-  }
-
-  public void setSugar(float sugar){
-    this.sugar = sugar;
-  }
-
-  public void setMilk(float milk){
-    this.milk = milk;
-  }
-
-  public void setAlmond(float almond){
-    this.almond = almond;
-  }
-
-  public float getCocoaButter( ){
-    return cocoaButter;
-  }
-
-  public float getCocoa( ){
-    return cocoa;
-  }
-
-  public float getSugar( ){
-    return sugar;
-  }
-
-  public float getMilk( ){
-    return milk;
-  }
-
-  public float getAlmond( ){
-    return  almond;
-  }
-
-  public void prepararDulce(int n){
+  public boolean prepararDulce(){
     System.out.println("¿Que dulce quieres preparar?");
     System.out.println("    1.- Chocolate ");
     System.out.println("    2.- Gomitas");
-    System.out.println("    3.- Galletas");
     int answerCandy = sc.nextInt();
     switch(answerCandy){
       case 1:
+        System.out.println("        Preparando en Wonka3000        ");
         System.out.println("¿Que tipo de chocolate quieres preparar?");
         System.out.println("    1. Chocolate de leche");
         System.out.println("    2. Chocolate oscuro");
@@ -77,29 +25,57 @@ public class Wonka3000{
 
         switch(answerChocolate){
           case 1:
-            chocolate = new MilkChocolate(this);
+            chocolate = new MilkChocolate(dulcesRosa);
             break;
           case 2:
-            chocolate = new DarkChocolate(this);
+            chocolate = new DarkChocolate(dulcesRosa);
             break;
           case 3:
-            chocolate = new AlmondChocolate(this);
+            chocolate = new AlmondChocolate(dulcesRosa);
             break;
         }
-
-        chocolate.prepareChocolateTemplate(numberChocolate);
+        if(chocolate.validate(numberChocolate) == true){
+          System.out.println("aqui si entra");
+          System.out.println("Hay suficientes ingredientes para preparar los chocolates");
+          chocolate.prepareChocolateTemplate(numberChocolate);
+          validate=true;
+        }else{
+          System.out.println("No válido");
+          validate = false;
+        }
         break;
+
+      case 2:
+        System.out.println("        Preparando en Wonka3000        ");
+        System.out.println("¿Que tipo de gomita quieres preparar?");
+        System.out.println("    1. Osito dulce");
+        System.out.println("    2. Gusanos acidos");
+        System.out.println("    3. Frutas con chamoy");
+        int answerGummy = sc.nextInt();
+        System.out.println("¿Cuantos paquetes de gomitas quieres preparar?");
+        int numberGummy = sc.nextInt();
+        switch(answerGummy){
+          case 1:
+            gummy = new GummyBear(dulcesRosa);
+            break;
+          case 2:
+            gummy = new GummyWorm(dulcesRosa);
+            break;
+          case 3:
+            gummy = new GummyChamoy(dulcesRosa);
+            break;
+        }
+        if(gummy.validate(numberGummy) == true){
+          System.out.println("Hay suficientes ingredientes para preparar las gomitas");
+          gummy.prepareGummyTemplate(numberGummy);
+          validate = true;
+        }else{
+          System.out.println("No válido");
+          validate = false;
+        }
+          break;
     }
+
+    return validate;
   }
-
-
-
-	/**
-	* Create string representation of Wonka3000 for printing
-	* @return
-	*/
-	@Override
-	public String toString() {
-		return "La maquina Wonka3000 tiene: \n Manteca de cacao: " + cocoaButter + "kg\n Cacao: " + cocoa + "kg\n Azucar: " + sugar + "kg\n Leche: " + milk + "kg\n Almendras: " + almond + "kg";
-	}
 }

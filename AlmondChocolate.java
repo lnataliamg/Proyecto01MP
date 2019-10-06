@@ -1,7 +1,7 @@
 public class AlmondChocolate extends Chocolate{
-  public AlmondChocolate(Wonka3000 wonka){
-    super(wonka,true,true);
-    this.wonka= wonka;
+  public AlmondChocolate(DulcesRosa dulcesRosa){
+    super(dulcesRosa);
+    System.out.println("Se ha creado con éxito");
   }
 
   @Override
@@ -12,8 +12,8 @@ public class AlmondChocolate extends Chocolate{
   public void addIngredientsChocolate(int n){
     prepareMilk(n);
     System.out.println("Agregando mezcla de leche y azucar a molde con el cacao y la manteca de cacao");
-    wonka.setCocoaButter(wonka.getCocoaButter() - (float)(.02*n));
-    wonka.setCocoa(wonka.getCocoa() - (float)(.02*n));
+    dulcesRosa.setCocoaButter(dulcesRosa.getCocoaButter() - (float)(.02*n));
+    dulcesRosa.setCocoa(dulcesRosa.getCocoa() - (float)(.02*n));
     addAlmonds(n);
 
   }
@@ -21,11 +21,20 @@ public class AlmondChocolate extends Chocolate{
   public void prepareMilk(int n){
     System.out.println("Agregando la leche y el azucar");
     System.out.println("Se mezclan y se concentran para preparar el proceso de la mezcla con la pasta de cacao y el cacao");
-    wonka.setMilk(  wonka.getMilk() - (float)(0.015*n));
-    wonka.setSugar(wonka.getSugar()- (float)(.013 * n ));
+    dulcesRosa.setMilk(  dulcesRosa.getMilk() - (float)(0.015*n));
+    dulcesRosa.setSugar(dulcesRosa.getSugar()- (float)(.013 * n ));
   }
   public void addAlmonds(int n){
     System.out.println("Agregando trocitos de almendras");
-    wonka.setAlmond(wonka.getAlmond() - (float)(0.03*n));
+    dulcesRosa.setAlmond(dulcesRosa.getAlmond() - (float)(0.03*n));
+  }
+
+  public Boolean validate(int n){
+    if(dulcesRosa.getCocoaButter() >= (.02*n) && dulcesRosa.getCocoa() >= (.02*n) && dulcesRosa.getMilk() >= (.015*n) && dulcesRosa.getSugar() >= (.013*n) && dulcesRosa.getAlmond()>=(.03*n)){
+      System.out.println("aqui estoy");
+      return true;
+    }
+    return false;
+
   }
 }
