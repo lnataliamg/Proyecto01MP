@@ -1,7 +1,8 @@
 public class AlmondChocolate extends Chocolate{
+
   public AlmondChocolate(DulcesRosa dulcesRosa){
     super(dulcesRosa);
-    System.out.println("Se ha creado con éxito");
+
   }
 
   @Override

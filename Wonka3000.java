@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Wonka3000 extends Machine{
+public abstract class Wonka3000 extends Machine{
   Scanner sc = new Scanner(System.in);
   Chocolate chocolate = null;
   Gummy gummy = null;
@@ -78,4 +78,6 @@ public class Wonka3000 extends Machine{
 
     return validate;
   }
+
+  public void pack();
 }

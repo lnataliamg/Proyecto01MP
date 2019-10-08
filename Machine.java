@@ -74,10 +74,6 @@ public class Machine{
     state.packProduct();
   }
 
-  public void hola(){
-    System.out.println("hola");
-  }
-
   public DulcesRosa getDulcesRosa(){
     return dulcesRosa;
   }

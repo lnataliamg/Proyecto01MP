@@ -10,9 +10,9 @@ public class Main{
      System.out.println("0. Enciende las maquinas");
      System.out.println("1. Apaga las maquinas");
      System.out.println("2. Suspendete");
-     System.out.println("3. Termina");
+
      System.out.println("4. Empaqueta");
-     System.out.println("5. Valida");
+
      System.out.println("6. Prepara el producto");
      System.out.println("7. Exit");
      System.out.println("¿Qué opción quieres hacer?");
@@ -34,7 +34,6 @@ public class Main{
         machine.packProduct();
         break;
         case 5:
-
         machine.chooseProduct();
         break;
         case 6:

@@ -1,6 +1,5 @@
 public abstract class Chocolate{
-  protected DulcesRosa dulcesRosa;
-
+	DulcesRosa dulcesRosa;
 	/**
 	* Default empty Chocolate constructor
 	*/
@@ -13,7 +12,7 @@ public abstract class Chocolate{
 	*/
 	public Chocolate(DulcesRosa dulcesRosa) {
     this.dulcesRosa = dulcesRosa;
-	}
+  }
 
   public abstract String getNameChocolate();
 

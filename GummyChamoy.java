@@ -1,6 +1,6 @@
 public class GummyChamoy extends Gummy{
   public GummyChamoy(DulcesRosa dulcesRosa){
-    this.dulcesRosa = dulcesRosa;
+    super(dulcesRosa);
   }
 
   @Override

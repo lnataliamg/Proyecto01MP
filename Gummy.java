@@ -1,10 +1,10 @@
 public abstract class Gummy{
-  protected DulcesRosa dulcesRosa;
+  DulcesRosa dulcesRosa;
   public Gummy(){
     super();
   }
   public Gummy(DulcesRosa dulcesRosa){
-    this.dulcesRosa=dulcesRosa;
+    this.dulcesRosa = dulcesRosa;
   }
 
   public abstract String getNameGummy();
