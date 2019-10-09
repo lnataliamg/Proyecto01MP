@@ -63,8 +63,8 @@ public class Machine{
     state.turningOff();
   }
 
-  public void chooseProduct(){
-    state.chooseProduct();
+  public void chooseProduct(int typeProduct, int numberProduct){
+    state.chooseProduct( typeProduct,  numberProduct);
   }
   public void suspend(){
     state.suspend();

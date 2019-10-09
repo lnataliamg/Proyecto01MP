@@ -12,7 +12,7 @@ public class Suspended implements State{
     System.out.println("Apagando maquina");
     machine.setState(machine.getOff());
   }
-  public void chooseProduct(){
+  public void chooseProduct(int typeProduct, int numberProduct){
     System.out.println("La maquina esta suspendida. No se puede realizar esta actividad");
   }
   public void suspend(){

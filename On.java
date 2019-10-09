@@ -17,31 +17,21 @@ public class On implements State{
     machine.setState(machine.getOff());
 
   }
-  public void chooseProduct(){
-    System.out.println("Eligiendo producto que preparar");
-    System.out.println("¿Qué deseas preparar?");
-    System.out.println("1. Dulces");
-    System.out.println("2. Galletas");
-    System.out.println("0. Exit");
-    int answer = sc.nextInt();
-    if(answer==1){
+  public void chooseProduct(int typeProduct, int numberProduct){
+    if(typeProduct<7){
       wonka = new Wonka3000(machine.getDulcesRosa());
-      if(wonka.prepararDulce()){
+      if(wonka.prepareCandy(typeProduct,numberProduct)){
         machine.setState(machine.getProductFinished());
       }else{
         machine.setState(machine.getValidator());
       }
-    }else if(answer == 2){
+    }else if(typeProduct>6){
       galleneitor = new Galleneitor500(machine.getDulcesRosa());
-      if(galleneitor.prepareCookie()){
+      if(galleneitor.prepareCookie(typeProduct,numberProduct)){
         machine.setState(machine.getProductFinished());
       }else{
         machine.setState(machine.getValidator());
       }
-    }else if(answer == 0){
-      System.exit(0);
-    }else{
-      System.out.println("Opción incorrecta");
     }
   }
 

@@ -12,7 +12,7 @@ public class ProductFinished implements State{
   public void turningOff(){
     System.out.println("No se puede apagar la maquina");
   }
-  public void chooseProduct(){
+  public void chooseProduct(int typeProduct, int numberProduct){
     System.out.println("Ya se ha elegido el producto");
   }
 

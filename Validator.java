@@ -13,7 +13,7 @@ public class Validator implements State{
     machine.setState(machine.getOff());
 
   }
-  public void chooseProduct(){
+  public void chooseProduct(int typeProduct, int numberProduct){
     System.out.println("Trayendo más ingredientes de la bodega. Rellenaremos el almacén con el 50% de su capacidad ");
     machine.getDulcesRosa().setWater(machine.getDulcesRosa().getWater()+(float)(machine.getDulcesRosa().getWater()*.50));
     machine.getDulcesRosa().setGrenetina(machine.getDulcesRosa().getGrenetina()+(float)(machine.getDulcesRosa().getGrenetina()*.50));
