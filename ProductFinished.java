@@ -19,9 +19,15 @@ public class ProductFinished implements State{
   public void suspend(){
     System.out.println("No se puede suspender la maquina");
   }
-  public void packProduct(){
+  public void packProduct(int typeProduct){
     System.out.println("Se ha terminado de cocinar y ahora se empaquetará el producto");
-    machine.empaquetar();
+    if(typeProduct<7){
+        wonka = new WonkaToGalleneitorAdapter(machine.getDulcesRosa());
+        wonka.pack();
+    }else if(typeProduct>6){
+      IGalleneitor galleneitorAdapter = new WonkaToGalleneitorAdapter(machine.getDulcesRosa());
+      galleneitorAdapter.packCookie();
+    }
     machine.setState(machine.getEnd());
   }
 }

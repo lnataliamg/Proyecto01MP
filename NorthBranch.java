@@ -36,7 +36,7 @@ public class NorthBranch implements IBranch{
   }
   @Override
   public Iterator getInventoryIterator(int branch){
-    return createIterator();
+    return this.createIterator();
   }
 
   @Override
@@ -75,5 +75,24 @@ public class NorthBranch implements IBranch{
     Batch batch1 = new Batch(numberProduct, typeProduct);
     technical.setNorthBranch(this);
     return batch1;
+  }
+
+  public static void main(String[] args) {
+    NorthBranch n = new NorthBranch();
+    SouthBranch s = new SouthBranch();
+    EastBranch e = new EastBranch();
+    IBranch pr = new ProxyBranch(n, e, s);
+    Batch batch = new Batch(1,2);
+    n.addBatch(batch);
+    System.out.println(n.getElement(1));
+
+    Iterator iter = n.createIterator();
+    while(iter.hasNext()){
+      Batch batch1 = (Batch) iter.next();
+      System.out.println(batch1.getTypeProduct());
+    }
+
+
+
   }
 }

@@ -4,12 +4,13 @@ public  class Wonka3000 extends Machine{
   Chocolate chocolate = null;
   Gummy gummy = null;
   Boolean validate = true;
+
   public Wonka3000(DulcesRosa dulcesRosa){
     super( dulcesRosa);
   }
 
   public boolean prepareCandy(int typeProduct, int numberProduct){
-    if(typeProduct < comprar4){
+    if(typeProduct < 4){
       switch (typeProduct) {
         case 1:
         chocolate = new AlmondChocolate(dulcesRosa);
@@ -55,5 +56,9 @@ public  class Wonka3000 extends Machine{
     return validate;
 
   }
+
+    public void pack(){
+      System.out.println("El producto ha sido finalizado y lo empaquetaremos con envolturas de -Dulces Rosa-");
+    }
 
 }

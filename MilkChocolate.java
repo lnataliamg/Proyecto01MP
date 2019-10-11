@@ -25,10 +25,10 @@ public class MilkChocolate extends Chocolate{
   }
 
   public Boolean validate(int n){
-    if(dulcesRosa.getCocoaButter() >= (.02*n) && dulcesRosa.getCocoa() >= (.02*n) && dulcesRosa.getMilk() >= (.015*n) && dulcesRosa.getSugar() >= (.013*n)){
-      return true;
+    if(dulcesRosa.getCocoaButter() < (.02*n) || dulcesRosa.getCocoa() < (.02*n) || dulcesRosa.getMilk() < (.015*n) || dulcesRosa.getSugar() < (.013*n) || dulcesRosa.getCocoaButter() == (0) || dulcesRosa.getCocoa() == (0) || dulcesRosa.getMilk() == (0) || dulcesRosa.getSugar() == (0)){
+      return false;
     }
-    return false;
+    return true;
 
   }
 

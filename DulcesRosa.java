@@ -171,7 +171,7 @@ public class DulcesRosa{
     }
 
     public String toString(){
-      String string = "El almacen tiene: ";
+      String string = "\nEl almacen tiene: ";
       string+= "\n Harina: " + flour + "kg";
       string+= "\n Huevos: " + egg + "kg";
       string+= "\n Azucar: " + sugar + "kg";

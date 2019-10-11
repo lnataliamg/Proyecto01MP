@@ -36,7 +36,7 @@ public class Validator implements State{
     System.out.println("La maquina se suspendera");
     machine.setState(machine.getSuspended());
   }
-  public void packProduct(){
+  public void packProduct(int typeProduct){
     System.out.println("Aun no se ha validado el pedido");
   }
 }

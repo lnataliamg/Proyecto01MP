@@ -39,7 +39,7 @@ public class On implements State{
     System.out.println("La máquina se suspenderá");
     machine.setState(machine.getSuspended());
   }
-  public void packProduct(){
+  public void packProduct(int typeProduct){
     System.out.println("Aun no se ha cocinado un producto");
   }
 }

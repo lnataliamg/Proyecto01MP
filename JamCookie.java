@@ -30,10 +30,10 @@ public class JamCookie extends Cookie{
   }
 
   public Boolean validate(int n){
-    if(dulcesRosa.getEgg() >= (.10*n) && dulcesRosa.getSugar() >= (.250*n) && dulcesRosa.getFlour() >= (.6*n) && dulcesRosa.getJam() >= (.080*n)){
-      return true;
+    if(dulcesRosa.getEgg() < (.10*n) || dulcesRosa.getSugar() < (.250*n) || dulcesRosa.getFlour() < (.6*n) || dulcesRosa.getJam() < (.080*n) || dulcesRosa.getEgg() == (0) || dulcesRosa.getSugar() == (0) || dulcesRosa.getFlour() == (0) || dulcesRosa.getJam() == (0)){
+      return false;
     }
-    return false;
+    return true;
 
   }
 }

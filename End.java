@@ -20,7 +20,7 @@ public class End implements State{
     System.out.println("Suspendiendo la maquina");
     machine.setState(machine.getSuspended());
   }
-  public void packProduct(){
+  public void packProduct(int typeProduct){
     System.out.println("No se ha preparado nada");
   }
 }

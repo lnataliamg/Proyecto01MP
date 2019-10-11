@@ -30,7 +30,7 @@ public class GummyChamoy extends Gummy{
     dulcesRosa.setChamoy(dulcesRosa.getChamoy()-(float)(0.030 * n));
   }
   public Boolean validate(int n){
-    if(dulcesRosa.getWater() >= (.04*n) && dulcesRosa.getGrenetina() >= (.050*n) && dulcesRosa.getHoney() >= (.040*n) && dulcesRosa.getChamoy() >= (.030*n)){
+    if(dulcesRosa.getWater() >= (.04*n) || dulcesRosa.getGrenetina() >= (.050*n) || dulcesRosa.getHoney() >= (.040*n) || dulcesRosa.getChamoy() >= (.030*n) || dulcesRosa.getWater() == 0 || dulcesRosa.getGrenetina() == (0) || dulcesRosa.getHoney() == (0) || dulcesRosa.getChamoy() == 0 ){
       return true;
     }
     return false;

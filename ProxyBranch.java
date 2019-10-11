@@ -48,14 +48,18 @@ public class ProxyBranch implements IBranch{
   @Override
   public Iterator getInventoryIterator(int branch){
     if(branch == 0){
+      System.out.println("Se creo el iterador");
       return northBranch.getInventoryIterator(0);
     }else if(branch == 1){
       return eastBranch.getInventoryIterator(1);
     }else if(branch == 2){
       return southBranch.getInventoryIterator(2);
+    }else{
+      return null;
     }
-    return null;
   }
+
+
 
 
 }

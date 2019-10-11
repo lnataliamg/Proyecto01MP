@@ -30,7 +30,7 @@ public class GummyWorm extends Gummy{
   }
 
   public Boolean validate(int n){
-    if(dulcesRosa.getWater() >= (.05*n) && dulcesRosa.getGrenetina() >= (.060*n) && dulcesRosa.getHoney() >= (.050*n) && dulcesRosa.getAcidFlavoring() >= (.020*n)){
+    if(dulcesRosa.getWater() >= (.05*n) || dulcesRosa.getGrenetina() >= (.060*n) || dulcesRosa.getHoney() >= (.050*n) || dulcesRosa.getAcidFlavoring() >= (.020*n) || dulcesRosa.getWater() == (0) || dulcesRosa.getGrenetina() == (0) || dulcesRosa.getHoney() == (0) || dulcesRosa.getAcidFlavoring() == (0)){
       return true;
     }
     return false;

@@ -22,10 +22,10 @@ public class Cracker extends Cookie{
   }
 
   public Boolean validate(int n){
-    if(dulcesRosa.getEgg() >= (.13*n) && dulcesRosa.getFlour() >= (.5*n) && dulcesRosa.getSalt() >= (.05*n)){
-      return true;
+    if(dulcesRosa.getEgg() < (.13*n) || dulcesRosa.getFlour() < (.5*n) || dulcesRosa.getSalt() < (.05*n) || dulcesRosa.getEgg() == (0) || dulcesRosa.getFlour() == 0 || dulcesRosa.getSalt() == 0 ){
+      return false;
     }
-    return false;
+    return true;
 
   }
 }

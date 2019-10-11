@@ -26,7 +26,7 @@ public class GummyBear extends Gummy{
     System.out.println("Agregando saborizante a los ositos dulces");
   }
   public Boolean validate(int n){
-    if(dulcesRosa.getWater() >= (.03*n) && dulcesRosa.getGrenetina() >= (.050*n) && dulcesRosa.getHoney() >= (.040*n)){
+    if(dulcesRosa.getWater() >= (.03*n) || dulcesRosa.getGrenetina() >= (.050*n) || dulcesRosa.getHoney() >= (.040*n) || dulcesRosa.getWater() == (0) || dulcesRosa.getGrenetina() == (0) || dulcesRosa.getHoney() == (0)){
       return true;
     }
     return false;

@@ -3,7 +3,7 @@ public interface State{
   public void turningOff();
   public void chooseProduct(int typeProduct, int numberProduct);
   public void suspend();
-  public void packProduct();
+  public void packProduct(int typeProduct);
 
 
 }

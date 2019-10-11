@@ -70,8 +70,8 @@ public class Machine{
     state.suspend();
   }
 
-  public void packProduct(){
-    state.packProduct();
+  public void packProduct(int typeProduct){
+    state.packProduct(typeProduct);
   }
 
   public DulcesRosa getDulcesRosa(){

@@ -18,7 +18,7 @@ public class Suspended implements State{
   public void suspend(){
     System.out.println("La maquina esta suspendida. No se puede realizar esta actividad");
   }
-  public void packProduct(){
+  public void packProduct(int typeProduct){
     System.out.println("La maquina esta suspendida. No se puede realizar esta actividad");
   }
 }

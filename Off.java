@@ -17,7 +17,7 @@ public class Off implements State{
   public void suspend(){
     System.out.println("La maquina esta apagada. No se puede realizar esta actividad");
   }
-  public void packProduct(){
+  public void packProduct(int typeProduct){
     System.out.println("La maquina esta apagada. No se puede realizar esta actividad");
   }
 }

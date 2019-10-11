@@ -40,7 +40,7 @@ public class SouthBranch implements IBranch{
   }
   @Override
   public Iterator getInventoryIterator(int branch){
-    return createIterator();
+    return this.createIterator();
   }
 
   @Override

@@ -23,7 +23,7 @@ public class EastBranch implements IBranch{
   }
   @Override
   public Iterator getInventoryIterator(int branch){
-    return createIterator();
+    return this.createIterator();
   }
 
   public void setIdEast() {

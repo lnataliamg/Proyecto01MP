@@ -17,10 +17,10 @@ public class DarkChocolate extends Chocolate{
   }
 
   public Boolean validate(int n){
-    if(dulcesRosa.getCocoaButter() >= (.02*n) && dulcesRosa.getCocoa() >= (.020*n)) {
-      return true;
+    if(dulcesRosa.getCocoaButter() < (.02*n) || dulcesRosa.getCocoa() < (.020*n) || dulcesRosa.getCocoaButter() == 0 || dulcesRosa.getCocoa() == (0)) {
+      return false;
     }
-    return false;
+    return true;
 
   }
 }

@@ -33,14 +33,16 @@ public class TechnicalOfficer{
     this.southBranch = southBranch;
   }
 
-  public Batch validateBatchOrder(int typeProduct, int numberProduct,int branch, IBranch proxy, Batch batchOrder, Machine machine){
+  public Batch validateBatchOrder(int branch,IBranch proxy, Batch batchOrder, Machine machine){
     Batch batchNew = null;
     if(branch == 0){
       Iterator iterator = proxy.getInventoryIterator(0);
       while(iterator.hasNext()){
+        System.out.println("Hay algo aqui");
         Batch batch = (Batch) iterator.next();
-        if(batch.getTypeProduct() == typeProduct || batch.getNumberProduct() == 0){
-          return batch;
+        if(batch.getTypeProduct() == batchOrder.getTypeProduct() || batch.getNumberProduct() == 0){
+          System.out.println("Ya hay este producto en el inventario");
+          return batchNew;
         }
         batchNew =startMachines(machine, batchOrder);
       }
@@ -48,8 +50,9 @@ public class TechnicalOfficer{
       Iterator iterator = proxy.getInventoryIterator(1);
       while(iterator.hasNext()){
         Batch batch = (Batch) iterator.next();
-        if(batch.getTypeProduct() == typeProduct || batch.getNumberProduct() == 0){
-          return batch;
+        if(batch.getTypeProduct() == batchOrder.getTypeProduct() || batch.getNumberProduct() == 0){
+          System.out.println("Ya hay este producto en el inventario");
+          return batchNew;
         }
         batchNew =startMachines(machine, batchOrder);
       }
@@ -57,20 +60,21 @@ public class TechnicalOfficer{
       Iterator iterator = proxy.getInventoryIterator(2);
       while(iterator.hasNext()){
         Batch batch = (Batch) iterator.next();
-        if(batch.getTypeProduct() == typeProduct || batch.getNumberProduct() == 0){
-          return batch;
+        if(batch.getTypeProduct() == batchOrder.getTypeProduct() || batch.getNumberProduct() == 0){
+          System.out.println("Ya hay este producto en el inventario");
+          return batchNew;
         }
         batchNew =startMachines(machine, batchOrder);
       }
     }
-
     return batchNew;
 
   }
 
   public Batch startMachines(Machine machine, Batch batchOrder){
     if(batchOrder != null){
-      System.out.println("Emachinel técnico está encendiendo las máquinas para preparar el lote. Recuerda que tú controlas el proceso de la máquina");
+      ArrayList<Integer> optionPassed = new ArrayList<Integer>();
+      System.out.println("Técnico debe encender las máquinas para preparar el lote. Recuerda que tú controlas el proceso de la máquina");
       Scanner sc = new Scanner(System.in);
           State off = new Off(machine);
           machine.setState(off);
@@ -95,11 +99,15 @@ public class TechnicalOfficer{
               machine.suspend();
               break;
               case 3:
-              machine.chooseProduct(batchOrder.getTypeProduct(), batchOrder.getNumberProduct());
-              break;
+
+                machine.chooseProduct(batchOrder.getTypeProduct(), batchOrder.getNumberProduct());
+
+                break;
+
               case 4:
-              machine.packProduct();
+              machine.packProduct(batchOrder.getTypeProduct());
               break;
+
               case 5:
               break;
               }
@@ -135,7 +143,27 @@ public class TechnicalOfficer{
     }
     return personal;
   }
+  public static void main(String[] args) {
+    NorthBranch n = new NorthBranch();
+    SouthBranch s = new SouthBranch();
+    EastBranch e = new EastBranch();
+    TechnicalOfficer te = new TechnicalOfficer(n, e, s);
+    IBranch pr = new ProxyBranch(n, e, s);
+    Batch batch = new Batch(1,2);
 
+
+
+    pr.setNorthBranch(n);
+    Iterator iter = pr.getInventoryIterator(0);
+
+    while(iter.hasNext()){
+      Batch batch1 = (Batch) iter.next();
+      System.out.println(batch1.getTypeProduct());
+    }
+
+
+
+  }
 
 
 
