@@ -7,9 +7,20 @@ public class SouthBranch implements IBranch{
     batch = new LinkedList<Batch>();
   }
 
-  public void addBatch(int numberProduct, int typeProduct, TechnicalOfficer technical){
+  public void setNorthBranch(NorthBranch northBranch){
 
   }
+  public void setEastBranch(EastBranch eastBranch){
+
+  }
+  public void setSouthBranch(SouthBranch southBranch){
+  
+  }
+
+  public void addBatch(Batch newBatch){
+        batch.add(newBatch);
+  }
+
   public Iterator createIterator(){
     Iterator southIterator = batch.iterator();
     return southIterator;
@@ -67,13 +78,14 @@ public class SouthBranch implements IBranch{
     return inventory;
   }
   @Override
-  public void askBatch(int numberProduct, int typeProduct, int branch, TechnicalOfficer technical,Machine machine){
+  public Batch askBatch(int numberProduct, int typeProduct, int branch, TechnicalOfficer technical,Machine machine){
     technical.setSouthBranch(this);
     boolean validate = technical.validateBatchOrder(numberProduct, typeProduct, 2);
     if(validate){
-      technical.startMachines(machine, typeProduct, numberProduct);
+      return technical.startMachines(machine, typeProduct, numberProduct);
     }else{
       System.out.println("Pedido invalido");
+      return null;
     }
   }
 }

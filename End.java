@@ -12,7 +12,7 @@ public class End implements State{
     System.out.println("Apagando la maquina");
     machine.setState(machine.getOff());
   }
-  public void chooseProduct(){
+  public void chooseProduct(int typeProduct, int numberProduct){
     System.out.println("Reiniciando maquina");
     machine.setState(machine.getOn());
   }

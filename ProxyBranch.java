@@ -9,6 +9,17 @@ public class ProxyBranch implements IBranch{
     this.southBranch = new SouthBranch();
   }
 
+  public void setNorthBranch(NorthBranch northBranch){
+    this.northBranch = northBranch;
+  }
+  public void setEastBranch(EastBranch eastBranch){
+    this.eastBranch = eastBranch;
+  }
+  public void setSouthBranch(SouthBranch southBranch){
+    this.southBranch = southBranch;
+  }
+
+
   @Override
   public String checkInventory(int branch){
     if(branch == 0){
@@ -21,14 +32,27 @@ public class ProxyBranch implements IBranch{
     return null;
   }
   @Override
-  public void askBatch(int numberProduct, int typeProduct, int branch,TechnicalOfficer technical, Machine machine){
+  public Batch askBatch(int numberProduct, int typeProduct, int branch,TechnicalOfficer technical, Machine machine){
     if(branch == 0){
-      northBranch.askBatch(numberProduct,typeProduct,0,technical,machine);
+      return northBranch.askBatch(numberProduct,typeProduct,0,technical,machine);
     }else if(branch == 1){
-      eastBranch.askBatch(numberProduct,typeProduct,1,technical,machine);
+      return eastBranch.askBatch(numberProduct,typeProduct,1,technical,machine);
     }else if(branch == 2){
-      southBranch.askBatch(numberProduct,typeProduct,2,technical,machine);
+      return southBranch.askBatch(numberProduct,typeProduct,2,technical,machine);
+    }else{
+      return null;
     }
+  }
+  public static void main(String[] args) {
+    NorthBranch nb = new NorthBranch();
+    EastBranch eb = new EastBranch();
+    SouthBranch sb = new SouthBranch();
+    IBranch proxy = new ProxyBranch(nb,eb,sb);
+    Batch batch = new Batch(1,1);
+    Batch batch1 = new Batch(1,2);
+    nb.addBatch(batch);
+    nb.addBatch(batch1);
+    System.out.println((nb.checkInventory(0)));
   }
 
 }

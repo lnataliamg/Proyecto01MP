@@ -4,6 +4,7 @@ public class DeliveryMan{
   private String rfc;
   private String name;
   private int branch;
+  private Batch batch;
 
 	/**
 	* Default empty DeliveryMan constructor
@@ -32,11 +33,11 @@ public class DeliveryMan{
 	}
 
   public int getBranch() {
-		return int;
+		return branch;
 	}
 
   public void setBranch(int branch){
-    this.branch = branch; 
+    this.branch = branch;
   }
 
 	/**
@@ -79,7 +80,32 @@ public class DeliveryMan{
 		this.name = name;
 	}
 
+  public void setBatch(Batch batch){
+    this.batch = batch;
+  }
+  public Batch getBatch(){
+    return batch;
+  }
   public static synchronized String createID(){
     return String.valueOf(idStarter++);
+  }
+
+
+  public void deliverBatch(int branch, NorthBranch northBranch, EastBranch eastBranch, SouthBranch southBranch){
+    if(batch != null){
+      if(branch == 0){
+        System.out.println(getName()+ " esta llevando el lote a la sucursal norte");
+        northBranch.addBatch(getBatch());
+      }else if(branch == 1){
+        System.out.println(getName()+ " esta llevando el lote a la sucursal este");
+        eastBranch.addBatch(getBatch());
+      }else if(branch == 2){
+        System.out.println(getName()+ " esta llevando el lote a la sucursal sur");
+        southBranch.addBatch(getBatch());
+      }
+      System.out.println("Lote llevado con éxito, ahora la socursal lo tiene en su inventario");
+    }else{
+      System.out.println("El repartidor no enviará ningún pedido");
+    }
   }
 }

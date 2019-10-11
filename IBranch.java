@@ -4,6 +4,9 @@ public interface IBranch{
 
     //proxy
   public String checkInventory(int branch);
-  public void askBatch(int numberProduct, int typeProduct, int branch,TechnicalOfficer technical,Machine machine);
-
+  public Batch askBatch(int numberProduct, int typeProduct, int branch,TechnicalOfficer technical,Machine machine);
+  public void setNorthBranch(NorthBranch northBranch);
+  public void setEastBranch(EastBranch eastBranch);
+  public void setSouthBranch(SouthBranch southBranch);
+  
 }

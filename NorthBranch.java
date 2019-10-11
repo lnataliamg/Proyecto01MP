@@ -6,15 +6,20 @@ public class NorthBranch implements IBranch{
   public NorthBranch(){
     batch = new ArrayList<Batch>();
   }
+  public void setNorthBranch(NorthBranch northBranch){
 
-  public void addBatch(int numberProduct, int typeProduct, TechnicalOfficer technical){
-    if(technical.validateBatchOrder(typeProduct, numberProduct, 0)){
-      Batch newBatch = new Batch(numberProduct,typeProduct);
-      batch.add(newBatch);
-    }
+  }
+  public void setEastBranch(EastBranch eastBranch){
+
+  }
+  public void setSouthBranch(SouthBranch southBranch){
+
+  }
+  public void addBatch(Batch newBatch){
+        this.batch.add(newBatch);
   }
   public Iterator createIterator(){
-    return new IteratorNorthBranch(batch);
+    return new IteratorNorthBranch(this.batch);
   }
   public Batch getElement(int index){
     Batch batchSearched = null;
@@ -32,52 +37,44 @@ public class NorthBranch implements IBranch{
 
   @Override
   public String checkInventory(int branch){
+
+    Iterator iterator = this.createIterator();
     String inventory = "";
-    Iterator iterator = createIterator();
     while(iterator.hasNext()){
-      Batch batch = (Batch)iterator.next();
-      switch (batch.getTypeProduct()) {
-        case 1:
-          inventory += "Chocolates de almendras: " + batch.getNumberProduct();
-          break;
-        case 2:
-          inventory+= "Chocolates de leche: " + batch.getNumberProduct();
-          break;
-        case 3:
-          inventory+= "Chocolates oscuros: " + batch.getNumberProduct();
-          break;
-        case 4:
-          inventory+= "Ositos dulces: " + batch.getNumberProduct();
-          break;
-        case 5:
-          inventory+= "Gusanos acidos: " + batch.getNumberProduct();
-          break;
-        case 6:
-          inventory+= "Frutas con chamoy: " + batch.getNumberProduct();
-          break;
-        case 7:
-          inventory+= "Galletas saladas: " + batch.getNumberProduct();
-          break;
-        case 8:
-          inventory+= "Galletas rellenas de mermelada: " + batch.getNumberProduct();
-          break;
-        case 9:
-          inventory+= "Galletas de chispas de chocolate: " + batch.getNumberProduct();
-          break;
-      }
+      Batch newBatch = (Batch)iterator.next();
+      if(newBatch.getTypeProduct()== 1) {
+          inventory += "\nChocolates de almendras: " + newBatch.getNumberProduct();
+        }else if(newBatch.getTypeProduct()== 2){
+          inventory+= "\nChocolates de leche: " + newBatch.getNumberProduct();
+        }else if(newBatch.getTypeProduct()== 3){
+        inventory+= "\nChocolates oscuros: " + newBatch.getNumberProduct();
+      }else if(newBatch.getTypeProduct()== 4){
+        inventory+= "\nOsitos dulces: " + newBatch.getNumberProduct();
+      }else if(newBatch.getTypeProduct()== 5){
+          inventory+= "\nGusanos acidos: " + newBatch.getNumberProduct();
+        }else if(newBatch.getTypeProduct()== 6){
+          inventory+= "\nFrutas con chamoy: " + newBatch.getNumberProduct();
+        }else if(newBatch.getTypeProduct()== 7){
+          inventory+= "\nGalletas saladas: " + newBatch.getNumberProduct();
+        }else if(newBatch.getTypeProduct()== 8){
+          inventory+= "\nGalletas rellenas de mermelada: " + newBatch.getNumberProduct();
+        }else if(newBatch.getTypeProduct()== 1){
+          inventory+= "\nGalletas de chispas de chocolate: " + newBatch.getNumberProduct();
+        }
     }
     return inventory;
   }
 
   @Override
-  public void askBatch(int numberProduct, int typeProduct,int branch,TechnicalOfficer technical, Machine machine){
+  public Batch askBatch(int numberProduct, int typeProduct,int branch,TechnicalOfficer technical, Machine machine){
+    Batch batch1 = new Batch(numberProduct, typeProduct);
     technical.setNorthBranch(this);
     boolean validate = technical.validateBatchOrder(numberProduct, typeProduct, 0);
     if(validate){
-      technical.startMachines(machine, typeProduct, numberProduct);
+      return technical.startMachines(machine,batch1);
     }else{
       System.out.println("Pedido invalido");
+      return null;
     }
   }
-
 }

@@ -2,19 +2,34 @@ import java.util.Hashtable;
 import java.util.Iterator;
 
 public class EastBranch implements IBranch{
+  private static long idStarter = 0;
   Hashtable batch;
+  String idEast;
   public EastBranch(){
     batch = new Hashtable();
+    idEast = createID();
   }
+  public void setNorthBranch(NorthBranch northBranch){}
+  public void setEastBranch(EastBranch eastBranch){}
+  public void setSouthBranch(SouthBranch southBranch){}
 
-  public void addBatch(int numberProduct, int typeProduct, TechnicalOfficer technical){
-
+  public void addBatch(Batch newBatch){
+    batch.put(idEast, newBatch);
   }
 
   public Iterator createIterator(){
     Iterator eastIterator = batch.values().iterator();
     return eastIterator;
   }
+
+  public void setIdEast() {
+		this.idEast = createID();
+	}
+
+  public static synchronized String createID(){
+    return String.valueOf(idStarter++);
+  }
+
 
   public Batch getElement(int index){
     Batch batchSearched = null;
@@ -69,13 +84,14 @@ public class EastBranch implements IBranch{
     return inventory;
   }
   @Override
-  public void askBatch(int numberProduct, int typeProduct,int branch,TechnicalOfficer technical,Machine machine){
+  public Batch askBatch(Batch batch,int branch,TechnicalOfficer technical,Machine machine){
     technical.setEastBranch(this);
     boolean validate = technical.validateBatchOrder(numberProduct, typeProduct, 1);
     if(validate){
-      technical.startMachines(machine, typeProduct, numberProduct);
+      return technical.startMachines(machine, typeProduct, numberProduct);
     }else{
       System.out.println("Pedido invalido");
+      return null;
     }
   }
 }
