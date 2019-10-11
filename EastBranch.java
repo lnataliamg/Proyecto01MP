@@ -7,19 +7,23 @@ public class EastBranch implements IBranch{
   String idEast;
   public EastBranch(){
     batch = new Hashtable();
-    idEast = createID();
   }
   public void setNorthBranch(NorthBranch northBranch){}
   public void setEastBranch(EastBranch eastBranch){}
   public void setSouthBranch(SouthBranch southBranch){}
 
   public void addBatch(Batch newBatch){
+    setIdEast();
     batch.put(idEast, newBatch);
   }
 
   public Iterator createIterator(){
     Iterator eastIterator = batch.values().iterator();
     return eastIterator;
+  }
+  @Override
+  public Iterator getInventoryIterator(int branch){
+    return createIterator();
   }
 
   public void setIdEast() {
@@ -83,15 +87,11 @@ public class EastBranch implements IBranch{
     }
     return inventory;
   }
+
   @Override
-  public Batch askBatch(Batch batch,int branch,TechnicalOfficer technical,Machine machine){
+  public Batch askBatch(int numberProduct, int typeProduct,int branch,TechnicalOfficer technical){
+    Batch batch1 = new Batch(numberProduct, typeProduct);
     technical.setEastBranch(this);
-    boolean validate = technical.validateBatchOrder(numberProduct, typeProduct, 1);
-    if(validate){
-      return technical.startMachines(machine, typeProduct, numberProduct);
-    }else{
-      System.out.println("Pedido invalido");
-      return null;
-    }
+    return batch1;
   }
 }

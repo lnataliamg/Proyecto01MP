@@ -1,3 +1,5 @@
+import java.util.*;
+import java.util.Iterator;
 public class ProxyBranch implements IBranch{
   NorthBranch northBranch;
   EastBranch eastBranch;
@@ -32,27 +34,28 @@ public class ProxyBranch implements IBranch{
     return null;
   }
   @Override
-  public Batch askBatch(int numberProduct, int typeProduct, int branch,TechnicalOfficer technical, Machine machine){
+  public Batch askBatch(int numberProduct, int typeProduct, int branch,TechnicalOfficer technical){
     if(branch == 0){
-      return northBranch.askBatch(numberProduct,typeProduct,0,technical,machine);
+      return northBranch.askBatch(numberProduct,typeProduct,0,technical);
     }else if(branch == 1){
-      return eastBranch.askBatch(numberProduct,typeProduct,1,technical,machine);
+      return eastBranch.askBatch(numberProduct,typeProduct,1,technical);
     }else if(branch == 2){
-      return southBranch.askBatch(numberProduct,typeProduct,2,technical,machine);
+      return southBranch.askBatch(numberProduct,typeProduct,2,technical);
     }else{
       return null;
     }
   }
-  public static void main(String[] args) {
-    NorthBranch nb = new NorthBranch();
-    EastBranch eb = new EastBranch();
-    SouthBranch sb = new SouthBranch();
-    IBranch proxy = new ProxyBranch(nb,eb,sb);
-    Batch batch = new Batch(1,1);
-    Batch batch1 = new Batch(1,2);
-    nb.addBatch(batch);
-    nb.addBatch(batch1);
-    System.out.println((nb.checkInventory(0)));
+  @Override
+  public Iterator getInventoryIterator(int branch){
+    if(branch == 0){
+      return northBranch.getInventoryIterator(0);
+    }else if(branch == 1){
+      return eastBranch.getInventoryIterator(1);
+    }else if(branch == 2){
+      return southBranch.getInventoryIterator(2);
+    }
+    return null;
   }
+
 
 }

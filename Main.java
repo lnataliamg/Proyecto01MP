@@ -89,7 +89,7 @@ public class Main{
             System.out.println("   1. Pedir lote ");
             int operationBatch = sc.nextInt();
             if(operationBatch == 1){
-              System.out.println("¿Que tipo de lote quieres comprar?");
+              System.out.println("¿Que tipo de lote quieres pedir?");
               System.out.println("           1. Chocolate con Almendras");
               System.out.println("           2. Chocolate de Leche");
               System.out.println("           3. Chocolate Oscuro");
@@ -103,9 +103,9 @@ public class Main{
               int typeOfBatch = sc.nextInt();
               System.out.println("¿Cuentos lotes quieres comprar?");
               int cantidad = sc.nextInt();
-              Batch batch = server.askBatch(cantidad, typeOfBatch, 0, technical, machine);
-
-              DeliveryMan selectedDelivered = technical.sortRandomBatch(batch);
+              Batch batch = server.askBatch(cantidad, typeOfBatch, 0, technical);
+              Batch validateBatch = technical.validateBatchOrder(typeOfBatch, cantidad, 0, server, batch, machine);
+              DeliveryMan selectedDelivered = technical.sortRandomBatch(validateBatch);
               selectedDelivered.deliverBatch(0, northBranch, eastBranch, southBranch);
               technical.setNorthBranch(northBranch);
               server.setNorthBranch(northBranch);
@@ -121,7 +121,7 @@ public class Main{
             System.out.println("   1. Pedir lote ");
             operationBatch = sc.nextInt();
             if(operationBatch == 1){
-              System.out.println("¿Que tipo de lote quieres comprar?");
+              System.out.println("¿Que tipo de lote quieres pedir?");
               System.out.println("           1. Chocolate con Almendras");
               System.out.println("           2. Chocolate de Leche");
               System.out.println("           3. Chocolate Oscuro");
@@ -135,12 +135,12 @@ public class Main{
               int typeOfBatch = sc.nextInt();
               System.out.println("¿Cuentos lotes quieres comprar?");
               int cantidad = sc.nextInt();
-              Batch batch = server.askBatch(cantidad, typeOfBatch, 3, technical, machine);
+              Batch batch = server.askBatch(cantidad, typeOfBatch, 2, technical);
 
-              (technical.sortRandomBatch(batch)).deliverBatch(3, northBranch, eastBranch, southBranch);
-              technical.setNorthBranch(northBranch);
-              server.setNorthBranch(northBranch);
-              System.out.println(server.checkInventory(3));
+              (technical.sortRandomBatch(batch)).deliverBatch(2, northBranch, eastBranch, southBranch);
+              technical.setSouthBranch(southBranch);
+              server.setSouthBranch(southBranch);
+              System.out.println(server.checkInventory(2));
 
             }
 
@@ -150,7 +150,7 @@ public class Main{
             System.out.println("   1. Pedir lote ");
              operationBatch = sc.nextInt();
             if(operationBatch == 1){
-              System.out.println("¿Que tipo de lote quieres comprar?");
+              System.out.println("¿Que tipo de lote quieres pedir?");
               System.out.println("           1. Chocolate con Almendras");
               System.out.println("           2. Chocolate de Leche");
               System.out.println("           3. Chocolate Oscuro");
@@ -164,11 +164,11 @@ public class Main{
               int typeOfBatch = sc.nextInt();
               System.out.println("¿Cuentos lotes quieres comprar?");
               int cantidad = sc.nextInt();
-              Batch batch = server.askBatch(cantidad, typeOfBatch, 2  , technical, machine);
-              (technical.sortRandomBatch(batch)).deliverBatch(2, northBranch, eastBranch, southBranch);
-              technical.setNorthBranch(northBranch);
-              server.setNorthBranch(northBranch);
-              System.out.println(server.checkInventory(2));
+              Batch batch = server.askBatch(cantidad, typeOfBatch, 1  , technical);
+              (technical.sortRandomBatch(batch)).deliverBatch(1, northBranch, eastBranch, southBranch);
+              technical.setEastBranch(eastBranch);
+              server.setEastBranch(eastBranch);
+              System.out.println(server.checkInventory(1));
 
 
             }

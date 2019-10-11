@@ -34,6 +34,10 @@ public class NorthBranch implements IBranch{
     }
     return batchSearched;
   }
+  @Override
+  public Iterator getInventoryIterator(int branch){
+    return createIterator();
+  }
 
   @Override
   public String checkInventory(int branch){
@@ -65,16 +69,11 @@ public class NorthBranch implements IBranch{
     return inventory;
   }
 
+
   @Override
-  public Batch askBatch(int numberProduct, int typeProduct,int branch,TechnicalOfficer technical, Machine machine){
+  public Batch askBatch(int numberProduct, int typeProduct,int branch,TechnicalOfficer technical){
     Batch batch1 = new Batch(numberProduct, typeProduct);
     technical.setNorthBranch(this);
-    boolean validate = technical.validateBatchOrder(numberProduct, typeProduct, 0);
-    if(validate){
-      return technical.startMachines(machine,batch1);
-    }else{
-      System.out.println("Pedido invalido");
-      return null;
-    }
+    return batch1;
   }
 }

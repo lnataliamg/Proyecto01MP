@@ -1,10 +1,11 @@
-public abstract class Cookie extends Product{
+public abstract class Cookie{
+  DulcesRosa dulcesRosa;
   public Cookie(){
     super();
   }
 
   public Cookie(DulcesRosa dulcesRosa){
-    super(dulcesRosa);
+    this.dulcesRosa = dulcesRosa;
   }
 
   public abstract String getNameCookie();

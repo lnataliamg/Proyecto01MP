@@ -33,39 +33,44 @@ public class TechnicalOfficer{
     this.southBranch = southBranch;
   }
 
-  public boolean validateBatchOrder(int typeProduct, int numberProduct, int branch ){
-    boolean validate= true;
+  public Batch validateBatchOrder(int typeProduct, int numberProduct,int branch, IBranch proxy, Batch batchOrder, Machine machine){
+    Batch batchNew = null;
     if(branch == 0){
-      Iterator iterator = northBranch.createIterator();
+      Iterator iterator = proxy.getInventoryIterator(0);
       while(iterator.hasNext()){
         Batch batch = (Batch) iterator.next();
         if(batch.getTypeProduct() == typeProduct || batch.getNumberProduct() == 0){
-          validate = false;
+          return batch;
         }
+        batchNew =startMachines(machine, batchOrder);
       }
     }else if(branch == 1){
-      Iterator iterator = eastBranch.createIterator();
+      Iterator iterator = proxy.getInventoryIterator(1);
       while(iterator.hasNext()){
         Batch batch = (Batch) iterator.next();
         if(batch.getTypeProduct() == typeProduct || batch.getNumberProduct() == 0){
-          validate = false;
+          return batch;
         }
+        batchNew =startMachines(machine, batchOrder);
       }
     }else if(branch == 2){
-      Iterator iterator = southBranch.createIterator();
+      Iterator iterator = proxy.getInventoryIterator(2);
       while(iterator.hasNext()){
         Batch batch = (Batch) iterator.next();
         if(batch.getTypeProduct() == typeProduct || batch.getNumberProduct() == 0){
-          validate = false;
+          return batch;
         }
+        batchNew =startMachines(machine, batchOrder);
       }
     }
-    return validate;
+
+    return batchNew;
+
   }
 
   public Batch startMachines(Machine machine, Batch batchOrder){
     if(batchOrder != null){
-      System.out.println("El técnico está encendiendo las máquinas para preparar el lote. Recuerda que tú controlas el proceso de la máquina");
+      System.out.println("Emachinel técnico está encendiendo las máquinas para preparar el lote. Recuerda que tú controlas el proceso de la máquina");
       Scanner sc = new Scanner(System.in);
           State off = new Off(machine);
           machine.setState(off);
@@ -102,6 +107,7 @@ public class TechnicalOfficer{
             Batch batch = new Batch(batchOrder.getTypeProduct(), batchOrder.getNumberProduct());
             return batch;
       }
+      System.out.println("No hay pedido que preprar");
       return null;
   }
 

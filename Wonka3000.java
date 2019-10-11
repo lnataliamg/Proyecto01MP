@@ -9,7 +9,7 @@ public  class Wonka3000 extends Machine{
   }
 
   public boolean prepareCandy(int typeProduct, int numberProduct){
-    if(typeProduct < 4){
+    if(typeProduct < comprar4){
       switch (typeProduct) {
         case 1:
         chocolate = new AlmondChocolate(dulcesRosa);
@@ -55,5 +55,5 @@ public  class Wonka3000 extends Machine{
     return validate;
 
   }
-  
+
 }
